@@ -2,14 +2,14 @@ import test - file in parent directory
 
 ```
 cjs
- |- main/main.js - require("../sub")
- |- sub.js   - empty
+ |- main/main.js - require("../sub/sub")
+ |- sub/sub.js   - empty
 esm-with-extensions
- |- main/main.mjs - import "../sub.mjs"
- |- sub.mjs   - empty
+ |- main/main.mjs - import "../sub/sub.mjs"
+ |- sub/sub.mjs   - empty
 esm-without-extensions
- |- main/main.mjs - import "../sub"
- |- sub.mjs   - empty
+ |- main/main.mjs - import "../sub/sub"
+ |- sub/sub.mjs   - empty
 ```
 
 ```bash

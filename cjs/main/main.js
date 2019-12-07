@@ -1,1 +1,1 @@
-require("../sub");
+require("../sub/sub");

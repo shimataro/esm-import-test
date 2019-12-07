@@ -1,1 +1,1 @@
-import "../sub";
+import "../sub/sub";
