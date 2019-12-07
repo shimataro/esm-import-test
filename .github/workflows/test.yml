@@ -1,8 +1,8 @@
 on: push
 name: Import test
 jobs:
-  cjs:
-    name: CommonJS
+  cjs-1:
+    name: CommonJS (1)
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -21,9 +21,9 @@ jobs:
     - name: Output versions
       run: node -v
     - name: Run!
-      run: node ./main/*.js
-  esm:
-    name: ES Modules with extensions
+      run: node ./main/1.js
+  cjs-2:
+    name: CommonJS (2)
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -42,4 +42,46 @@ jobs:
     - name: Output versions
       run: node -v
     - name: Run!
-      run: node --experimental-modules ./main/*.mjs
+      run: node ./main/2.js
+  esm-1:
+    name: ES Modules (1)
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+        - windows-latest
+        nodejs:
+        - "10.0.0"
+      fail-fast: false
+    steps:
+    - name: Checkout source codes
+      uses: actions/checkout@v1
+    - name: Install Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.nodejs }}
+    - name: Output versions
+      run: node -v
+    - name: Run!
+      run: node --experimental-modules ./main/1.mjs
+  esm-2:
+    name: ES Modules (2)
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+        - windows-latest
+        nodejs:
+        - "10.0.0"
+      fail-fast: false
+    steps:
+    - name: Checkout source codes
+      uses: actions/checkout@v1
+    - name: Install Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.nodejs }}
+    - name: Output versions
+      run: node -v
+    - name: Run!
+      run: node --experimental-modules ./main/2.mjs
