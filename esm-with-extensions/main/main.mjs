@@ -1,1 +1,1 @@
-import "../sub/sub.mjs";
+import "..\\sub\\sub.mjs";
