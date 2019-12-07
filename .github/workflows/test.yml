@@ -1,7 +1,7 @@
 on: push
 name: Import test
 jobs:
-  cjs-1:
+  1-1.js:
     name: require('..\\sub\\sub');
     runs-on: ${{ matrix.os }}
     strategy:
@@ -20,9 +20,34 @@ jobs:
         node-version: ${{ matrix.nodejs }}
     - name: Output versions
       run: node -v
+    - name: Print file
+      run: cat ./main/1-1.js
     - name: Run!
-      run: node ./main/1.js
-  cjs-2:
+      run: node ./main/1-1.js
+  1-2.js:
+    name: require('./..\\sub\\sub');
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+        - windows-latest
+        nodejs:
+        - "10.0.0"
+      fail-fast: false
+    steps:
+    - name: Checkout source codes
+      uses: actions/checkout@v1
+    - name: Install Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.nodejs }}
+    - name: Output versions
+      run: node -v
+    - name: Print file
+      run: cat ./main/1-2.js
+    - name: Run!
+      run: node ./main/1-2.js
+  2-1.js:
     name: require('../sub\\sub');
     runs-on: ${{ matrix.os }}
     strategy:
@@ -41,9 +66,34 @@ jobs:
         node-version: ${{ matrix.nodejs }}
     - name: Output versions
       run: node -v
+    - name: Print file
+      run: cat ./main/2-1.js
     - name: Run!
-      run: node ./main/2.js
-  cjs-3:
+      run: node ./main/2-1.js
+  2-2.js:
+    name: require('./../sub\\sub');
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+        - windows-latest
+        nodejs:
+        - "10.0.0"
+      fail-fast: false
+    steps:
+    - name: Checkout source codes
+      uses: actions/checkout@v1
+    - name: Install Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.nodejs }}
+    - name: Output versions
+      run: node -v
+    - name: Print file
+      run: cat ./main/2-2.js
+    - name: Run!
+      run: node ./main/2-2.js
+  3-1.js:
     name: require('.\\sub');
     runs-on: ${{ matrix.os }}
     strategy:
@@ -62,9 +112,34 @@ jobs:
         node-version: ${{ matrix.nodejs }}
     - name: Output versions
       run: node -v
+    - name: Print file
+      run: cat ./main/3-1.js
     - name: Run!
-      run: node ./main/3.js
-  cjs-4:
+      run: node ./main/3-1.js
+  3-2.js:
+    name: require('./.\\sub');
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+        - windows-latest
+        nodejs:
+        - "10.0.0"
+      fail-fast: false
+    steps:
+    - name: Checkout source codes
+      uses: actions/checkout@v1
+    - name: Install Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.nodejs }}
+    - name: Output versions
+      run: node -v
+    - name: Print file
+      run: cat ./main/3-2.js
+    - name: Run!
+      run: node ./main/3-2.js
+  4-1.js:
     name: require('./sub');
     runs-on: ${{ matrix.os }}
     strategy:
@@ -83,9 +158,34 @@ jobs:
         node-version: ${{ matrix.nodejs }}
     - name: Output versions
       run: node -v
+    - name: Print file
+      run: cat ./main/4-1.js
     - name: Run!
-      run: node ./main/4.js
-  esm-1:
+      run: node ./main/4-1.js
+  4-2.js:
+    name: require('././sub');
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+        - windows-latest
+        nodejs:
+        - "10.0.0"
+      fail-fast: false
+    steps:
+    - name: Checkout source codes
+      uses: actions/checkout@v1
+    - name: Install Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.nodejs }}
+    - name: Output versions
+      run: node -v
+    - name: Print file
+      run: cat ./main/4-2.js
+    - name: Run!
+      run: node ./main/4-2.js
+  1-1.mjs:
     name: import '..\\sub\\sub.mjs';
     runs-on: ${{ matrix.os }}
     strategy:
@@ -104,9 +204,34 @@ jobs:
         node-version: ${{ matrix.nodejs }}
     - name: Output versions
       run: node -v
+    - name: Print file
+      run: cat ./main/1-1.mjs
     - name: Run!
-      run: node --experimental-modules ./main/1.mjs
-  esm-2:
+      run: node --experimental-modules ./main/1-1.mjs
+  1-2.mjs:
+    name: import './..\\sub\\sub.mjs';
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+        - windows-latest
+        nodejs:
+        - "10.0.0"
+      fail-fast: false
+    steps:
+    - name: Checkout source codes
+      uses: actions/checkout@v1
+    - name: Install Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.nodejs }}
+    - name: Output versions
+      run: node -v
+    - name: Print file
+      run: cat ./main/1-2.mjs
+    - name: Run!
+      run: node --experimental-modules ./main/1-2.mjs
+  2-1.mjs:
     name: import '../sub\\sub.mjs';
     runs-on: ${{ matrix.os }}
     strategy:
@@ -125,10 +250,12 @@ jobs:
         node-version: ${{ matrix.nodejs }}
     - name: Output versions
       run: node -v
+    - name: Print file
+      run: cat ./main/2-1.mjs
     - name: Run!
-      run: node --experimental-modules ./main/2.mjs
-  esm-3:
-    name: import '..\\sub.mjs';
+      run: node --experimental-modules ./main/2-1.mjs
+  2-2.mjs:
+    name: import './../sub\\sub.mjs';
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -146,10 +273,12 @@ jobs:
         node-version: ${{ matrix.nodejs }}
     - name: Output versions
       run: node -v
+    - name: Print file
+      run: cat ./main/2-2.mjs
     - name: Run!
-      run: node --experimental-modules ./main/3.mjs
-  esm-4:
-    name: import '../sub.mjs';
+      run: node --experimental-modules ./main/2-2.mjs
+  3-1.mjs:
+    name: import '.\\sub.mjs';
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -167,5 +296,76 @@ jobs:
         node-version: ${{ matrix.nodejs }}
     - name: Output versions
       run: node -v
+    - name: Print file
+      run: cat ./main/3-1.mjs
     - name: Run!
-      run: node --experimental-modules ./main/4.mjs
+      run: node --experimental-modules ./main/3-1.mjs
+  3-2.mjs:
+    name: import './.\\sub.mjs';
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+        - windows-latest
+        nodejs:
+        - "10.0.0"
+      fail-fast: false
+    steps:
+    - name: Checkout source codes
+      uses: actions/checkout@v1
+    - name: Install Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.nodejs }}
+    - name: Output versions
+      run: node -v
+    - name: Print file
+      run: cat ./main/3-2.mjs
+    - name: Run!
+      run: node --experimental-modules ./main/3-2.mjs
+  4-1.mjs:
+    name: import './sub.mjs';
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+        - windows-latest
+        nodejs:
+        - "10.0.0"
+      fail-fast: false
+    steps:
+    - name: Checkout source codes
+      uses: actions/checkout@v1
+    - name: Install Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.nodejs }}
+    - name: Output versions
+      run: node -v
+    - name: Print file
+      run: cat ./main/4-1.mjs
+    - name: Run!
+      run: node --experimental-modules ./main/4-1.mjs
+  4-2.mjs:
+    name: import '././sub.mjs';
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+        - windows-latest
+        nodejs:
+        - "10.0.0"
+      fail-fast: false
+    steps:
+    - name: Checkout source codes
+      uses: actions/checkout@v1
+    - name: Install Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.nodejs }}
+    - name: Output versions
+      run: node -v
+    - name: Print file
+      run: cat ./main/4-2.mjs
+    - name: Run!
+      run: node --experimental-modules ./main/4-2.mjs
