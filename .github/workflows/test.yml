@@ -8,8 +8,6 @@ jobs:
       matrix:
         os:
         - windows-latest
-#        - macos-latest
-#        - ubuntu-latest
         nodejs:
         - "10.0.0"
       fail-fast: false
@@ -23,16 +21,14 @@ jobs:
     - name: Output versions
       run: node -v
     - name: Run!
-      run: node ./cjs/main/main.js
-  esm-with-extensions:
+      run: node ./main/*.js
+  esm:
     name: ES Modules with extensions
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os:
         - windows-latest
-#        - macos-latest
-#        - ubuntu-latest
         nodejs:
         - "10.0.0"
       fail-fast: false
@@ -46,27 +42,4 @@ jobs:
     - name: Output versions
       run: node -v
     - name: Run!
-      run: node --experimental-modules ./esm-with-extensions/main/main.mjs
-  esm-without-extensions:
-    name: ES Modules without extensions
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os:
-        - windows-latest
-#        - macos-latest
-#        - ubuntu-latest
-        nodejs:
-        - "10.0.0"
-      fail-fast: false
-    steps:
-    - name: Checkout source codes
-      uses: actions/checkout@v1
-    - name: Install Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.nodejs }}
-    - name: Output versions
-      run: node -v
-    - name: Run!
-      run: node --experimental-modules ./esm-without-extensions/main/main.mjs
+      run: node --experimental-modules ./main/*.mjs
